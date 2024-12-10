@@ -1,0 +1,118 @@
+node JavaScript class work.........................
+==========================================================================================================
+Asynchronous JavaScript  
+
+Asynchronous JavaScript ka matlab hota hai code ko aise likhna jo ek saath multiple tasks handle kar sake bina baaki code ko block kiye.Asynchronous behavior ka matlab hota hai kisi kaam ko aise handle karna ki jab tak ek task complete ho raha ho, tab tak doosre tasks bhi chal sakte hain bina kisi ko wait karaye. Is behavior me code ka execution non-blocking hota hai, yaani ek task doosre ko roke bina parallelly kaam karta hai. 
+===================================================================================================
+Jab bhi aap normal synchronous code likhte ho, toh ek kaam complete hone ke baad hi doosra kaam start hota hai. Lekin asynchronous JavaScript me, aap ek kaam start karke doosre kaam ko bhi parallel me chalne de sakte ho. Jise kehte hain "non-blocking" execution. 
+================================================================================================
+Socho aap ek restaurant me ho aur aapne pizza order kiya. Agar chef pehle poora pizza banaye, tabhi dusre customers ki orders le, toh time lagega (ye hai synchronous behavior). 
+
+Asynchronous behavior me kya hota hai? Chef pizza oven me dalta hai aur jab tak pizza bake ho raha hota hai, wo dusre customers ki order le sakta hai. Jab pizza ready hota hai, tab server aapke paas deliver kar deta hai. Is process me kisi ka kaam nahi ruka, sab smooth chal raha hai! 
+=================================================================================================
+Web Applications me Kaise Kaam Karta Hai? 
+
+API Calls: Jab aap kisi server se data fetch karte ho, asynchronous code use karte ho taaki jab tak server se data aata hai, aapka UI responsive rahe. 
+
+SetTimeout / SetInterval: Timer set karne ke liye asynchronous code use hota hai, jaise notification delay se dikhana. 
+
+Event Listeners: User ke click ya input ka response bhi asynchronously handle hota hai bina page ko freeze kiye. 
+
+Promises and async/await: Ye modern JavaScript me asynchronous code ko likhne ka easy tareeka hai. Jaise aap fetch() API use karte ho data get karne ke liye. 
+=======================================================================================
+
+UI Freeze Nahi Hota: Users ko smooth experience milta hai, koi lag nahi hota. 
+
+Faster Execution: Multiple tasks ek saath handle hote hain. 
+
+Better User Experience: Jab tak data load ho raha hota hai, aap loading indicators ya other UI elements dikha sakte ho. 
+=========================================================================================================
+ Non-blocking: Code ka execution kisi task ke complete hone ka wait nahi karta. 
+
+Efficiency: Multiple tasks ek saath manage ho jaate hain. 
+
+Examples: 
+
+API calls se data fetch karna. 
+
+Timers jaise setTimeout. 
+
+Event listeners jaise button clicks. 
+
+File reading ya network requests. 
+
+Asynchronous behavior se aapka application responsive aur fast lagta hai!  
+============================================================================================================
+
+
+Node.js ko single-threaded architecture ke liye jaana jaata hai, lekin uska asynchronous nature usse powerful banata hai. Node.js ka core concept hai event loop, jo multiple requests ko efficiently handle karta hai bina additional threads ko spawn kiye. 
+
+==================================
+
+1. Single-threaded Event Loop 
+
+Node.js ka main thread ek event loop chalata hai. Ye loop continuously check karta hai ki koi task ready hai ya nahi. 
+
+Main Thread: Sab kuch ek hi thread pe hota hai, lekin Node.js ka main thread sirf quick tasks ko handle karta hai. 
+
+Event Queue: Jab koi long-running operation hota hai, jaise file read ya network request, wo event queue me daal diya jata hai. 
+
+ 
+
+2. Asynchronous Tasks ko Delegate Karna 
+
+Node.js , jo asynchronous tasks ko manage karne me madad karti hai. Jab koi heavy task aata hai, Node.js usse background me Thread Pool ko assign kar deta hai. 
+
+Example Tasks jo Delegate Hote Hain: 
+
+File I/O (reading/writing) 
+
+Network Requests (API calls) 
+
+Database Queries 
+
+Timers (setTimeout, setInterval) 
+
+ 3. Event Loop Ka Process 
+
+Incoming Request: Jab koi request aati hai, Node.js ka main thread use receive karta hai. 
+
+Check Task Type: 
+
+Agar task quick hai (jaise calculation), main thread use turant handle karega. 
+
+Agar task slow hai (jaise file read), usse background thread pool me bhej diya jayega. 
+
+Task Complete Hone Par: Jab background task complete ho jata hai, result ko callback queue me daal diya jata hai. 
+
+Event Loop Check Karega: 
+
+Jaise hi main thread free hota hai, event loop callback queue se result uthake process kar leta hai 
+=================================================================================================================================
+
+
+function nodejsasyae(main) {
+    setTimeout(() => {
+      console.log("Settime started");
+      main();
+    },5000);
+  }
+  function main() {
+    console.log("main executed");
+  }
+  nodejsasyae(main);
+  console.log("hello");
+  console.log("hello2");
+
+//   ==============================================================
+
+function nodejssyae(main){
+      main();
+}
+  function main() {
+    console.log("main executed");
+  }
+  nodejssyae(main);
+  console.log("hello");
+  console.log("hello2");
+// ============================================================================
