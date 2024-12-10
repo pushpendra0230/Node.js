@@ -88,6 +88,76 @@ Task Complete Hone Par: Jab background task complete ho jata hai, result ko call
 Event Loop Check Karega: 
 
 Jaise hi main thread free hota hai, event loop callback queue se result uthake process kar leta hai 
+
+
+The primary difference between setTimeout and setInterval in JavaScript is how they execute the callback functions: 
+
+1.setTimeout: 
+
+It executes a function once after a specified delay. 
+
+Syntax: setTimeout(callback, delay) 
+
+ 
+  
+
+In this example, the message is logged once after 2 seconds. 
+
+2.setInterval: 
+
+It executes a function repeatedly at the specified interval (in milliseconds). 
+
+Syntax: setInterval(callback, interval) 
+
+ 
+  
+
+In this case, the message will be logged every 2 seconds. 
+
+ 
+
+Key Differences: 
+
+setTimeout runs the code once after the specified delay. 
+
+setInterval runs the code repeatedly at the given time interval. 
+
+ 
+
+Example Use Cases: 
+
+setTimeout: Use when you want to execute something after a delay, like showing a notification after a few seconds. 
+
+setInterval: Use when you need to perform a task periodically, like updating a clock every second. 
+
+
+Event Loop Execution :-
+
+Node.js Event Loop Explanation: 
+
+Call Stack: 
+
+JavaScript ka execution hota hai ek call stack ke through. Jab koi function call hota hai, wo stack pe push hota hai, aur jab complete ho jata hai, wo pop ho jata hai. 
+
+Callback Queue: 
+
+Jab asynchronous functions jaise setTimeout ko call kiya jata hai, unke callbacks ko ek callback queue mein daal diya jata hai. Callback tabhi execute hota hai jab call stack empty hota hai. 
+
+Event Loop: 
+
+Event loop check karta hai ki call stack empty hai ya nahi. Agar empty hai, to wo callback queue se callbacks ko uthakar call stack pe push kar deta hai. 
+
+ 
+
+ 
+
+FIFO (First In, First Out) Explanation: 
+
+Queue mein jo callbacks daale jaate hain, unko ek FIFO manner mein execute kiya jaata hai. Matlab: 
+
+Pehla jo callback queue mein aata hai, wo pehle execute hota hai. 
+
+Jab call stack empty hota hai, event loop us callback ko queue se pehle execute karta hai. 
 =================================================================================================================================
 
 
@@ -104,7 +174,7 @@ function nodejsasyae(main) {
   console.log("hello");
   console.log("hello2");
 
-//   ==============================================================
+// =========================================================================
 
 function nodejssyae(main){
       main();
@@ -116,3 +186,22 @@ function nodejssyae(main){
   console.log("hello");
   console.log("hello2");
 // ============================================================================
+function nodejsasync(callback) {
+    setTimeout(() => {
+      console.log("Settime started");
+      callback();
+    }, 5000);
+  }
+  function a() {
+    console.log("a started");
+  }
+  function main() {
+    console.log("main started");
+    nodejsasync(a);
+    nodejsasync(main);
+    console.log("1");
+    console.log("2");
+    console.log("3");
+  }
+  nodejsasync(main);
+//======================================================================================
