@@ -227,3 +227,12 @@
 // }
 // fetchdata();
 // =========================================================================
+let data = [];
+async function fetchdata() {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+    data = await response.json();
+    console.log(data);
+    return data;
+}
+fetchdata();
+console.log(data);
